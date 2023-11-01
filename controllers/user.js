@@ -30,6 +30,15 @@ module.exports = {
           succes: false,
           message: "Password minimal 8 karakter",
         };
+      } else if (
+        req.body.email.includes("@") &&
+        req.body.email.includes(".com")
+      ) {
+        throw {
+          codestatus: 400,
+          succes: false,
+          message: "Email tidak valid",
+        };
       } else {
         console.log("masuk else");
         const result = await User.create(req.body);
