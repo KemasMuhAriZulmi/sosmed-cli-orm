@@ -31,8 +31,8 @@ module.exports = {
           message: "Password minimal 8 karakter",
         };
       } else if (
-        req.body.email.includes("@") &&
-        req.body.email.includes(".com")
+        !req.body.email.includes("@") &&
+        !req.body.email.includes(".com")
       ) {
         throw {
           codestatus: 400,
