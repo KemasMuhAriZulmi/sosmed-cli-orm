@@ -8,6 +8,7 @@ module.exports = {
         where: {
           username: req.body.username,
           email: req.body.email,
+          phone: req.body.phone,
         },
       });
       if (checkUser.length > 0) {
@@ -16,6 +17,18 @@ module.exports = {
           codestatus: 400,
           succes: false,
           message: "Username sudah digunakan",
+        };
+      } else if (req.body.password !== req.body.confirmpassword) {
+        throw {
+          codestatus: 400,
+          succes: false,
+          message: "Password tidak sama",
+        };
+      } else if (req.body.password.length <= 8) {
+        throw {
+          codestatus: 400,
+          succes: false,
+          message: "Password minimal 8 karakter",
         };
       } else {
         console.log("masuk else");
